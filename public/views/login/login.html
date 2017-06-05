@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div ng-contoller="LoginCtrl" class="col-xs-12 col-md-10">
+            <div ng-show="hasError" class="alert alert-danger"><span class="center">{{error}}</span><span class="pull-right" ng-click="hasError = false;">&times;</span></div>
+            <form>
+                <div ng-show="showlogin">
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" class="form-control" ng-model="user.email" id="Email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input type="password" class="form-control" ng-model="user.password" id="Password" placeholder="Password">
+                    </div>
+                    <button type="submit" ng-click="login()" class="btn btn-default">Submit</button>
+                    <button type="submit" ng-click="openreset()" class="btn btn-default">Forgot password</button>
+                </div>
+                <br />
+                <div ng-show="showreset">
+                    <label for="Reset">
+                        Forgot your password?
+                    </label>
+                    <br />
+                    <input type="input" class="form-control" ng-model="user.resetemail" id="Reset" placeholder="email">
+                    <button type="submit" ng-click="forgotpassword()" class="btn btn-default">Reset</button>
+                </div>
+                <div ng-show="passresetpage">
+                    <label for="Newpass">
+                        New Password
+                    </label>
+                    <br />
+                    <input type="password" class="form-control" ng-model="user.newpass" id="Newpass" placeholder="Password">
+                    <br />
+                    <label for="Newpass2">
+                        Reenter Password
+                    </label>
+                    <input type="password" class="form-control" ng-model="user.newrepass" id="Newpass2" placeholder="PassworD">
+                    <button type="submit" ng-click="resetpass()" class="btn btn-default">Reset</button>
+                </div>
+                <br />
+                <br />
+                <div>Have questions of feedback? Send an email to: <a href="mailto:team@venturx.ca">team@venturx.ca</a>.</div>
+            </form>
+        </div>
+    </div>
+</div>

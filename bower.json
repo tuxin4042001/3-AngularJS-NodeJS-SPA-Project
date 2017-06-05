@@ -1,0 +1,23 @@
+{
+  "name": "venturx",
+  "description": "app",
+  "main": "app.js",
+  "authors": [
+    "abhi"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-modal-service": "^0.10.1",
+    "ng-dialog": "ngDialog#^1.0.0",
+    "ng-bootstrap": "^1.0.1"
+  }
+}

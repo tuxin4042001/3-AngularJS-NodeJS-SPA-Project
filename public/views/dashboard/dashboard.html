@@ -1,0 +1,186 @@
+<div class="container" ng-init="getScores()">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1">
+            <img src="images/profile.png" alt="Avatar" class="img-responsive center-block img-rounded">
+        </div>
+        <div class="col-md-7">
+            <div class="entr-info">
+                <div ng-show="hideprofile">
+                    <div class="row py-6">
+                        <div class="col-md-2">
+                            <strong>Company</strong>
+                        </div>
+                        <div class="col-md-7">
+                            {{company.companyname === "" ? "Specify your company's name" : company.companyname}}
+                        </div>
+                    </div>
+                    <div class="row py-6">
+                        <div class="col-md-2">
+                            <strong>Market</strong>
+                        </div>
+                        <div class="col-md-7">
+                            {{company.market === "" ? "Specify your target market" : company.market}}
+                        </div>
+                    </div>
+                    <div class="row py-6">
+                        <div class="col-md-2">
+                            <strong>Pain</strong>
+                        </div>
+                        <div class="col-md-7">
+                            {{company.pain === "" ? "Specify the problem you want to solve" : company.pain}}
+                        </div>
+                    </div>
+                    <div class="row py-6">
+                        <div class="col-md-2">
+                            <strong>Benefit</strong>
+                        </div>
+                        <div class="col-md-7">
+                            {{company.benefit === "" ? "Specify how you will change your customers' lives" : company.benefit}}
+                        </div>
+                        <button ng-click="updateprofilebutton()" class="btn btn-default">{{profilebutton}}</button>
+                    </div>
+                </div>
+                <div ng-show="updateProfiledialog">
+                    <span class="center">
+                        <label for="market">Company Name</label>
+                        <input type="text" class="form-control" ng-model="company.companyname" ng-focus="focus()" ng-blur="blur()" id="market" placeholder="What is your company's name?">
+                        <label for="market">Market</label>
+                        <input type="text" class="form-control" ng-model="company.market" ng-focus="focus()" ng-blur="blur()" id="market" placeholder="Who are your intended customers?">
+                        <label for="pain">Pain</label>
+                        <input type="text" class="form-control" ng-model="company.pain" ng-focus="focus()" ng-blur="blur()" id="pain" placeholder="What problem are you trying to solve for them?">
+                        <label for="benefit">Benefit</label>
+                        <input type="text" class="form-control" ng-model="company.benefit" ng-focus="focus()" ng-blur="blur()" id="benefit" placeholder="How will you change their lives?">
+                    </span>
+                    <br>
+                    <button ng-click="updateprofilebutton()" class="btn btn-default">{{profilebutton}}</button>
+                    <button ng-click="cancelupdate()" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Dashboard -->
+    <div class="row" ng-show="hidecompany">
+        <div class="col-xs-12">
+            <h3 class="text-center my-30">
+                How is <strong>{{company.companyname}}</strong> doing today?
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="auto bottom" title="Measures how well your product resonates with your customers (product-market fit)">
+            <a href="#/product">
+                <svg class="gauge" width="200" height="200">
+                    <defs>
+                        <filter id="product-glow" x="-10" y="-10" width="200" height="200">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+                        </filter>
+                    </defs>
+                    <circle class="glow" cx="100" cy="100" r="70" stroke="blue" stroke-width="1" fill="blue" filter="url(#product-glow)" />
+                    <circle cx="100" cy="100" r="70" stroke="#cccccc" stroke-width="2" fill="white" />
+                    <path id="product" fill="none" stroke="{{productScoreColor}}" stroke-width="8" stroke-linecap="round" />
+                    <text x="100" y="100" fill="bbbbbb" style="
+                       text-anchor: middle;
+                       font-family: verdana;
+                       font-size: 14">
+                        <tspan style="font-size: 32">{{productScore}}</tspan>
+                        <tspan dx="-5">%</tspan>
+                        <tspan x="100" dy="25">Product</tspan>
+                    </text>
+                </svg>
+            </a>
+        </div>
+        <div class="col-sm-2 col-sm-offset-1" data-toggle="tooltip" data-placement="auto bottom" title="The time remaining before your financing runs out">
+            <a href="#/runway">
+                <svg class="gauge" width="200" height="200">
+                    <defs>
+                        <filter id="runway-glow" x="-10" y="-10" width="200" height="200">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+                        </filter>
+                    </defs>
+                    <circle class="glow" cx="100" cy="100" r="70" stroke="blue" stroke-width="1" fill="blue" filter="url(#runway-glow)" />
+                    <circle cx="100" cy="100" r="70" stroke="#cccccc" stroke-width="2" fill="white" />
+                    <path id="runway" fill="none" stroke="{{runwayScoreColor}}" stroke-width="8" stroke-linecap="round" />
+                    <text x="100" y="100" fill="bbbbbb" style="
+                   text-anchor: middle;
+                   font-family: verdana;
+                   font-size: 14">
+                        <tspan style="font-size: 32">{{runwayMonths}}</tspan>
+                        <tspan dx="-5">m</tspan>
+                        <tspan x="100" dy="25">Runway</tspan>
+                    </text>
+                </svg>
+            </a>
+        </div>
+        <div class="col-sm-2 col-sm-offset-1" data-toggle="tooltip" data-placement="auto bottom" title="This measures your success in getting commitments from potential customers">
+            <a href="#/conversion">
+                <svg class="gauge" width="200" height="200">
+                    <defs>
+                        <filter id="convert-glow" x="-10" y="-10" width="200" height="200">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+                        </filter>
+                    </defs>
+                    <circle class="glow" cx="100" cy="100" r="70" stroke="blue" stroke-width="1" fill="blue" filter="url(#convert-glow)" />
+                    <circle cx="100" cy="100" r="70" stroke="#cccccc" stroke-width="2" fill="white" />
+                    <path id="conversion" fill="none" stroke="{{conversionScoreColor}}" stroke-width="8" stroke-linecap="round" />
+                    <text x="100" y="100" fill="bbbbbb" style="
+                   text-anchor: middle;
+                   font-family: verdana;
+                   font-size: 14">
+                        <tspan style="font-size: 32">{{conversionScore}}</tspan>
+                        <tspan dx="-5">%</tspan>
+                        <tspan x="100" dy="25">Conversion</tspan>
+                    </text>
+                </svg>
+            </a>
+        </div>
+        <div class="col-sm-2 col-sm-offset-1" data-toggle="tooltip" data-placement="auto bottom" title="Reflects the level of regular usage of your product or service">
+            <a href="#/engagement">
+                <svg class="gauge" width="200" height="200">
+                    <defs>
+                        <filter id="engage-glow" x="-10" y="-10" width="200" height="200">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+                        </filter>
+                    </defs>
+                    <circle class="glow" cx="100" cy="100" r="70" stroke="blue" stroke-width="1" fill="blue" filter="url(#engage-glow)" />
+                    <circle cx="100" cy="100" r="70" stroke="#cccccc" stroke-width="2" fill="white" />
+                    <path id="engagement" fill="none" stroke="{{engagementScoreColor}}" stroke-width="8" stroke-linecap="round" />
+                    <text x="100" y="100" fill="bbbbbb" style="
+                   text-anchor: middle;
+                   font-family: verdana;
+                   font-size: 14">
+                        <tspan style="font-size: 32">{{engagementScore}}</tspan>
+                        <tspan dx="-5">%</tspan>
+                        <tspan x="100" dy="25">Engagement</tspan>
+                    </text>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <!-- Removing second row of guages until they actually do something
+    <div class="row mt-2">
+        <div class="col-lg-2 col-lg-offset-3 text-center grey-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="auto bottom" title="level 1 out of 5">
+            <p class="text-center"><strong>Level</strong></p>
+            <a href="#" class="link-elem">
+                <div class="GaugeMeter LevelClass" data-percent="1" data-style="Semi" data-color="#337AB7" data-used="1" data-total="5"> </div>
+            </a>
+        </div>
+        <div class="col-lg-2 grey-tooltip" aria-hidden="true" data-toggle="tooltip" data-placement="auto bottom" title="How strong is your team?
+          Score on who are the people on your team and how it relates to your industry.">
+            <p class="text-center"><strong>Team</strong></p>
+            <a href="#"> <img src="images/brain.jpg" class="img-responsive" alt="Brain Idea"> </a>
+        </div>
+        <div class="col-lg-2">
+            <p class="text-center"><strong>Finance</strong></p>
+            <a href="#"> <img src="images/money.jpg" class="img-responsive" alt="Money Score"> </a>
+        </div>
+    </div>
+    -->
+    <!-- /Dashboard -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-info" role="alert" ng-show="hint">
+                <strong>{{dashboardHint}}</strong>
+            </div>
+        </div>
+    </div>
+</div>

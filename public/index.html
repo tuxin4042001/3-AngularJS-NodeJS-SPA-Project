@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="venturxApp" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VenturX - Entrepreneur Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+
+    <!--Enable Heap Analytics tracking-->
+    <script type="text/javascript">
+        window.heap = window.heap || [], heap.load = function (e, t) {
+            window.heap.appid = e, window.heap.config = t = t || {};
+            var r = t.forceSSL || "https:" === document.location.protocol
+                , a = document.createElement("script");
+            a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js";
+            var n = document.getElementsByTagName("script")[0];
+            n.parentNode.insertBefore(a, n);
+            for (var o = function (e) {
+                return function () {
+                    heap.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+                }
+            }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++) heap[p[c]] = o(p[c])
+        };
+        heap.load("3269995903");
+    </script>
+    <!--Include Favicon in the index page-->
+    <link rel="shortcut icon" href="images/VenturXlogo.jpg" />
+    <!--Include Bootstrap styles-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--Include Bootstrap-select plugin styles-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <!--Include VenturX styles-->
+    <link rel="stylesheet" href="css/app.css">
+    <!--Include Homepage styles-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--Include Video Popup styles-->
+    <link rel="stylesheet" type="text/css" href="css/videopopup.css" media="screen">
+</head>
+
+<body>
+    <!-- Define the menu bar -->
+    <nav ng-controller="HeadCtrl" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#/"><img alt="VenturX" src="images/logo.png" class="logo"></a>
+                <a ng-show="isLoggedIn()" class="btn nav-link glyphicon glyphicon-home" href="#/"> <strong>Home</strong> <span class="sr-only">(current)</span></a>
+                <a ng-show="isLoggedIn()" class="btn nav-link glyphicon glyphicon-user" href="#/dashboard"> <strong>Dashboard</strong> <span class="sr-only"></span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="!isLoggedIn()"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> <strong>Login</strong></a></li>
+                    <li ng-show="!isLoggedIn()"><a href="#/signup"><span class="glyphicon glyphicon-user"></span> <strong>Sign Up</strong></a></li>
+                    <li ng-show="isLoggedIn()"><a href=""><b>Hello, {{email}}</b></a></li>
+                    <li ng-show="isLoggedIn()"><a href="" ng-click="logout()">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--load the homepage-->
+    <a href="#/"></a>
+    <!--Mark the insertion point for the content view -->
+    <div ng-view></div>
+    <!--Include JQuery functions-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--Include Angular functions-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    <!--Include Bootstrap functions-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--Include Bootstrap-select plugin functions-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+    <!--Include Stripe integration for on-line payments-->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <!--Prepare the page-->
+    <script>
+        $(document).ready(function () {
+            // Enable tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <!--Add the JS files for every view-->
+    <script src="app.js"></script>
+    <script src="views/login/login.js"></script>
+    <script src="views/signup/signup.js"></script>
+    <script src="views/update/update.js"></script>
+    <script src="views/dashboard/dashboard.js"></script>
+    <script src="views/product/product.js"></script>
+    <script src="views/conversion/conversion.js"></script>
+    <script src="views/engagement/engagement.js"></script>
+    <script src="views/runway/runway.js"></script>
+    <script src="views/homepage/homepage.js"></script>
+    <script src="views/wizardForm/wizardForm.js"></script>
+    <script src="js/videopopup.js"></script>
+    <script src="js/runway-currency.js"></script>
+</body>
+
+</html>

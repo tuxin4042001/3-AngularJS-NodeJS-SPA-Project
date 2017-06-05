@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+		<div ng-contoller="ConversionCtrl" class="col-xs-12 col-md-10">
+      <div ng-show="hasError" class="alert alert-danger"><span class="center">Error: {{error}}</span><span class="pull-right" ng-click="hasError = false;">&times;</span></div>
+			<form>
+			  <div class="form-group">
+				<label for="signedup">1. Of the people that were surveyed, how many people gave you contact information, such as an email address?</label>
+				<input type="number" class="form-control" ng-model="conversion.signedup" id="signedup" placeholder="">
+			  </div>
+			  <div class="form-group">
+				  <label for="money">2. How many people paid for a pre-order (i.e., paid in advance)?</label>
+				  <input type="number" class="form-control" ng-model="conversion.money" id="money" placeholder="">
+			  </div>
+        <div class="form-group">
+				  <label for="intent">3. If applicable in your case, how many people signed a Letter of Intent / Promise to Purchase?</label>
+				  <input type="number" class="form-control" ng-model="conversion.intent" id="intent" placeholder="">
+			  </div>
+        <div class="form-group">
+				  <label for="contact">4. If you collected email addresses, please enter them here (comma separated)...</label>
+				  <input type="text" class="form-control" ng-model="conversion.contact" id="contact" placeholder="">
+			  </div>
+			  <button type="submit" ng-click="saveConversion()" class="btn btn-primary">Submit</button>
+        <button ng-click="cancel()" class="btn btn-default">Cancel</button>
+			</form>
+		</div>
+	</div>
+</div>

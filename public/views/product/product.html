@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+		<div ng-contoller="ProductCtrl" class="col-xs-12 col-md-10">
+      <div ng-show="hasError" class="alert alert-danger"><span class="center">Error: {{error}}</span><span class="pull-right" ng-click="hasError = false;">&times;</span></div>
+			<form>
+			  <div class="form-group">
+				<label for="surveyed">1. How many people did you survey in this target market? (the more you survey, the more points you will get)</label>
+				<input type="number" class="form-control" ng-model="product.surveyed" id="surveyed" placeholder="">
+			  </div>
+        <div class="form-group">
+				  <label for="pain78">2. How many people rated the pain as 7 or 8?</label>
+				  <input type="number" class="form-control" ng-model="product.pain78" id="pain78" placeholder="">
+			  </div>
+        <div class="form-group">
+				  <label for="pain910">3. How many people rated the pain as 9 or 10?</label>
+				  <input type="number" class="form-control" ng-model="product.pain910" id="pain910" placeholder="">
+			  </div>
+        <div class="form-group">
+				  <label for="benefit78">4. How many people rated the benefit as 7 or 8?</label>
+				  <input type="number" class="form-control" ng-model="product.benefit78" id="benefit78" placeholder="">
+			  </div>
+        <div class="form-group">
+				  <label for="benefit910">5. How many people rated the benefit as 9 or 10?</label>
+				  <input type="number" class="form-control" ng-model="product.benefit910" id="benefit910" placeholder="">
+			  </div>
+			  <button type="submit" ng-click="saveProduct()" class="btn btn-primary">Submit</button>
+        <button ng-click="cancel()" class="btn btn-default">Cancel</button>
+				<a href="views/product/ProductSurveySample.pdf" download="ProductSurveySample.pdf" class="btn btn-success">Download Survey</a>
+			</form>
+		</div>
+	</div>
+</div>

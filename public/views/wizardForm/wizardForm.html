@@ -1,0 +1,163 @@
+<form ng-controller="wizardFormCtrl as vmForm" class="col-xs-12 col-md-10">
+    <div ng-switch="vmForm.step">
+        <div class="stepone" ng-switch-when="one">
+            <h3>1.Product</h3>
+            <div class="form-group">
+                <label for="surveyed">1. How many people did you survey in this target market? (the more you survey, the more points you will get)</label>
+                <input type="input" class="form-control" ng-model="product.surveyed" id="surveyed" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="pain78">2. How many people rated the pain as 7 or 8?</label>
+                <input type="input" class="form-control" ng-model="product.pain78" id="pain78" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="pain910">3. How many people rated the pain as 9 or 10?</label>
+                <input type="input" class="form-control" ng-model="product.pain910" id="pain910" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="benefit78">4. How many people rated the benefit as 7 or 8?</label>
+                <input type="input" class="form-control" ng-model="product.benefit78" id="benefit78" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="benefit910">5. How many people rated the benefit as 9 or 10?</label>
+                <input type="input" class="form-control" ng-model="product.benefit910" id="benefit910" placeholder="">
+            </div>
+            <button type="submit" ng-click="vmForm.stepTwo();saveProduct()" class="btn btn-primary">Next</button>
+            <!--<button ng-click="cancel()" class="btn btn-default">Previous</button>-->
+            <a href="views/product/ProductSurveySample.pdf" download="ProductSurveySample.pdf" class="btn btn-success" style="float: right;">Download Survey</a>
+        </div>
+        <div class="steptwo" ng-switch-when="two">
+            <h3>2.Runway</h3>
+            <div class="form-group">
+                <label for="cash">How much money do you have in the bank currently?</label>
+                <input type="text" class="form-control" ng-model="runway.cash" id="cash" placeholder="">
+            </div>
+            <div>
+                <h3>Revenues</h3>
+            </div>
+            <div class="runawayRevenue" ng-repeat="revenue in runway.revenues">
+                <div ng-show="hideRevenue">
+                    <h4 class="text-left my-30">
+                        <strong>Type of Revenue #{{$index+1}} is: {{revenue.typeOfMoney}}</strong>
+                        <a href="">
+                                <span class="edit-icon" ng-click="updateRevenue()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
+                            </a>
+                    </h4>
+                </div>
+                <div ng-show="updateRevenueDialog">
+                    <h4 class="text-left my-30">
+                        <label for="Revenue">Type of Revenue is: </label>
+                        <input type="text" class="form-revenue" ng-model="revenue.typeOfMoney" id="typeOfMoney" placeholder="{{revenue.typeOfMoney}}">
+                        <button ng-click="saveRevenue()" class="btn btn-default">Save</button>
+                    </h4>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="amount">How much money is it generating at the moment?</label>
+                        <input type="text" class="form-control" ng-model="revenue.amount" id="amount" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Is this a monthly amount or a one-time payment?</label>
+                        <br />
+                        <input type="radio" ng-model="revenue.type" value="monthly" checked>Monthly
+                        <br />
+                        <input type="radio" ng-model="revenue.type" value="once">One-time only
+                        <br />
+                    </div>
+                </div>
+                <div>
+                    <button ng-click="addRevenue()" class="btn btn-primary">Add</button>
+                    <button ng-click="deleteRevenue($index)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div>
+                <h3>Expenses</h3>
+            </div>
+            <div class="runawayExpense" ng-repeat="expense in runway.expenses">
+                <div ng-show="hideExpense">
+                    <h4 class="text-left my-30">
+                        <strong>Type of Expense #{{$index+1}} is: {{expense.typeOfMoney}}</strong>
+                        <a href="">
+                                <span class="edit-icon" ng-click="updateExpense()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
+                            </a>
+                    </h4>
+                </div>
+                <div ng-show="updateExpenseDialog">
+                    <h4 class="text-left my-30">
+                        <label for="Expense">Type of Expense is: </label>
+                        <input type="text" class="form-expense" ng-model="expense.typeOfMoney" id="typeOfMoney" placeholder="{{expense.typeOfMoney}}">
+                        <button ng-click="saveExpense()" class="btn btn-default">Save</button>
+                    </h4>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label for="amount">Enter the amount of the expense</label>
+                        <input type="text" class="form-control" ng-model="expense.amount" id="amount" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Is this a monthly amount or a one-time payment?</label>
+                        <br />
+                        <input type="radio" ng-model="expense.type" value="monthly" checked>Monthly
+                        <br />
+                        <input type="radio" ng-model="expense.type" value="once">One-time only
+                        <br />
+                    </div>
+                </div>
+                <div>
+                    <button ng-click="addExpense()" class="btn btn-primary">Add</button>
+                    <button ng-click="deleteExpense($index)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="runawaySubmit">
+                <button ng-click="vmForm.stepOne()" class="btn btn-primary">Previous</button>
+                <button type="submit" ng-click="vmForm.stepThree();saveRunway()" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+        <div class="stepthree" ng-switch-when="three">
+            <h3>3.Conversion</h3>
+            <div class="form-group">
+                <label for="signedup">1. Of the people that were surveyed, how many people gave you contact information, such as an email address?</label>
+                <input type="input" class="form-control" ng-model="conversion.signedup" id="signedup" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="money">2. How many people paid for a pre-order (i.e., paid in advance)?</label>
+                <input type="input" class="form-control" ng-model="conversion.money" id="money" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="intent">3. If applicable in your case, how many people signed a Letter of Intent / Promise to Purchase?</label>
+                <input type="input" class="form-control" ng-model="conversion.intent" id="intent" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="contact">4. If you collected email addresses, please enter them here (comma separated)...</label>
+                <input type="input" class="form-control" ng-model="conversion.contact" id="contact" placeholder="">
+            </div>
+            <button ng-click="vmForm.stepTwo()" class="btn btn-default">Previous</button>
+            <button type="submit" ng-click="vmForm.stepFour();saveConversion()" class="btn btn-primary">Next</button>
+        </div>
+        <div class="stepfour" ng-switch-when="four">
+            <h3>4.Engagement</h3>
+            <div class="form-group">
+                <label for="registered">1. How many users or customers do you currently have?</label>
+                <input type="input" class="form-control" ng-model="engagement.registered" id="registered" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="resigned">2. Of your current users/customers, how many people signed on more than once or visited your business more than once? (may not be applicable to all industries)</label>
+                <input type="input" class="form-control" ng-model="engagement.resigned" id="resigned" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="used">3. How many people used the product or service?</label>
+                <input type="input" class="form-control" ng-model="engagement.used" id="used" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="referred">4. How many people gave you a referral? (to another potential customer)</label>
+                <input type="input" class="form-control" ng-model="engagement.referred" id="referred" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="usedw">5. How many people used your product or service more than two times in the same week? (may not be applicable to all industries)</label>
+                <input type="input" class="form-control" ng-model="engagement.usedw" id="usedw" placeholder="">
+            </div>
+            <button ng-click="vmForm.stepThree()" class="btn btn-default">Previous</button>
+            <button type="submit" ng-click="saveEngagement()" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>

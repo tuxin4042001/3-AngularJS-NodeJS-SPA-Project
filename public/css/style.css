@@ -1,0 +1,281 @@
+body {
+    color: #a8b0bb;
+}
+
+a {
+    color: #a8b0bb;
+    text-decoration: none;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.backgroundImage {
+    top:-20px;
+    position: relative;
+    background-image: url("../images/BackgroundImage2.png");
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.backwords-title {
+    text-align: center;
+    margin-top: 100px;
+    color: black;
+    font-family: lato;
+    font-size: 68px;
+}
+
+.backwords-describe {
+    text-align: center;
+    color: black;
+    font-family: lato;
+    font-size: 38px;
+}
+
+.backgroundButton{
+    margin-bottom:50px;
+}
+
+a.btn.center-block.watchVideo {
+    display: block;
+    border-style: solid;
+    border-radius: 3px;
+    z-index: 28;
+    width: 209px;
+    height: 51px;
+    padding: 12px;
+    position: relative;
+    background: rgba(6, 164, 235, 0);
+    box-shadow: none;
+    text-shadow: none;
+    color: black;
+    border-width: 2px;
+    border-color: #ffffff;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    font-family: Lato;
+    text-align: center;
+    background-repeat: no-repeat;
+    font-size:30px;
+}
+
+a.btn.center-block.watchVideo:hover {
+    background: rgba(0, 139, 201, 0.75);
+    box-shadow: none;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff;
+}
+
+a.btn.center-block.watchVideo:active {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: none;
+    color: #06a4eb;
+}
+
+a.btn.center-block.watchVideo.label {
+    margin-top: -11px;
+}
+
+a.btn.center-block.signUp {
+    display: block;
+    border-style: solid;
+    border-radius: 3px;
+    z-index: 28;
+    width: 209px;
+    height: 51px;
+    padding: 12px;
+    background: rgba(6, 164, 235, 0);
+    box-shadow: none;
+    text-shadow: none;
+    color: black;
+    border-width: 2px;
+    border-color: #ffffff;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    font-family: Lato;
+    text-align: center;
+    background-repeat: no-repeat;
+    font-size: 30px;
+}
+
+a.btn.center-block.signUp:hover {
+    background: rgba(0, 139, 201, 0.75);
+    box-shadow: none;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff;
+}
+
+a.btn.center-block.signUp:active {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: none;
+    color: #06a4eb;
+}
+
+a.btn.center-block.signUp.label {
+    margin-top: -11px;
+}
+
+div.row.companyImage{
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+div.row.companyImage > div.col-md-3{
+    margin-bottom: 20px;
+}
+
+.slogan1 {
+    text-align: center;
+    color: #363945;
+    font-family: lato;
+    font-size: 34px;
+}
+
+.slogan2 {
+    text-align: center;
+    color: grey;
+    font-family: lato;
+    font-size: 18px;
+}
+
+.img-responsive.center-block {
+    vertical-align: middle;
+}
+
+.caption > p {
+    vertical-align: middle;
+    text-align: center;
+    color: grey;
+    font-size: 18px;
+}
+
+.peopleSaying {
+    background-color: RGB(236,238,241);
+}
+
+#peopleSayingTitle > p {
+    text-align: center;
+    font-size: 24px;
+}
+
+.comment1 {
+    text-align: center;
+    font-family: lato;
+    font-size: 30px;
+    font-style: italic;
+}
+
+.comment2 {
+    text-align: center;
+    font-family: lato;
+    font-size: 18px;
+    font-style: italic;
+}
+
+#commentPic {
+    background-color: RGB(236,238,241);
+    border: none;
+}
+
+#commentPic > div > p > span {
+    font-family: lato;
+    font-size: 18px;
+}
+
+#socialMedia {
+    background-color: white;
+}
+
+#media {
+    align-content: center;
+}
+
+.socialMedia{
+    padding-left:50px;
+}
+
+.socialMedia2{
+    padding-left:40px;
+}
+
+.img-responsive.center-block.img-rounded{
+    visibility: hidden;
+}
+
+/*dashboard*/
+div.alert.alert-info{
+    background-color: rgb(250,94,114);
+    color:white;
+}
+
+/*product download button*/
+a.btn.btn-success{
+    float:right;
+    margin-top:0px;
+}
+
+/*runway css style*/
+.runawayRevenue {
+    margin-top: 20px;
+}
+
+.runawayExpense {
+    margin-top: 20px;
+}
+
+.runawaySubmit {
+    margin-top: 20px;
+}
+
+/*runway select and input style*/
+select#Select1{
+    margin-top: 1px;
+    height: 34px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+input#revenueTypeOfMoney{
+    margin-top: 1px;
+    height: 34px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+select#Select2{
+    margin-top: 1px;
+    height: 34px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+input#expenseTypeOfMoney{
+    margin-top: 1px;
+    height: 34px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+/*runway currency*/
+.currency {
+  padding-left:12px;
+}
+
+.currency-symbol {
+  position:absolute;
+  padding-top: 8px;
+  padding-bottom: 5px;
+}

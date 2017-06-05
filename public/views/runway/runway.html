@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row">
+        <div ng-contoller="RunwayCtrl" class="col-xs-12 col-md-10">
+            <div ng-show="hasError" class="alert alert-danger"><span class="center">Error: {{error}}</span><span class="pull-right" ng-click="hasError = false;">&times;</span></div>
+            <form>
+                <div class="form-group">
+                    <label for="cash">How much money is in your Company Bank Account (including funding and personal contribution)?</label>
+                    <span>
+                        <input type="number" min="0" max="100000000" class="form-control currency" id="moneyInBank" style="width:30%" ng-model="runway.cash" placeholder="">
+                    </span>
+                </div>
+                <div>
+                    <h3>Revenues</h3>
+                </div>
+                <div class="runawayRevenue" ng-repeat="revenue in runway.revenues">
+                    <div ng-show="editRevenueDialog">
+                        <h4 class="text-left my-30">
+                            <label for="typeOfRevenue" class="col-2 col-form-label">Type of Revenue is: </label>
+                            <select id="Select1" class="custom-select" ng-change="saveRevenueType($index)" ng-model="revenue.typeOfMoney">
+                                <option>Choose a type here</option>
+                                <option>Advertising</option>
+                                <option>Commission</option>
+                                <option>Fee-for-service</option>
+                                <option>Licensing</option>
+                                <option>Markup</option>
+                                <option>Rental</option>
+                                <option>Retail Sales</option>
+                                <option>Subscription</option>
+                                <option>Wholesale</option>
+                                <option>Other Revenue</option>
+                            </select>
+                            <input type="text" class="inputlg" id="revenueTypeOfMoney" style="width:30%" ng-model="revenue.typeOfMoney" ng-show="otherInputDialog"
+                                ng-blur="saveRevenueType($index)" placeholder="">
+                            <!--<button id="revenueTypeOfMoneySave" class="btn btn-default" ng-show="otherInputDialog" ng-click="saveRevenueType($index)">Save</button>-->
+                        </h4>
+                    </div>
+                    <div ng-show="displayRevenueDialog">
+                        <h4 class="text-left my-30">
+                            <strong>Type of Revenue #{{$index+1}} is: <a href=""><span class="text-info" ng-click="updateRevenueType()">{{revenue.typeOfMoney}}</span></a></strong>
+                        </h4>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="amount">How much money is it generating at the moment?</label>
+                            <input type="number" min="0" max="100000000" class="form-control currency" id="revenueAmount" style="width:30%" ng-model="revenue.amount"
+                                placeholder="{{revenue.amount}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Is this a monthly amount or a one-time payment?</label>
+                            <br />
+                            <input type="radio" ng-model="revenue.type" value="monthly" checked>Monthly
+                            <br />
+                            <input type="radio" ng-model="revenue.type" value="once">One-time only
+                            <br />
+                        </div>
+                    </div>
+                    <div>
+                        <button ng-click="addRevenue()" class="btn btn-primary">Add</button>
+                        <button ng-click="deleteRevenue($index)" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                <div>
+                    <h3>Expenses</h3>
+                </div>
+                <div class="runawayExpense" ng-repeat="expense in runway.expenses">
+                    <div ng-show="editExpenseDialog">
+                        <h4 class="text-left my-30">
+                            <label for="typeOfExpense" class="col-2 col-form-label">Type of Expense is: </label>
+                            <select id="Select2" class="custom-select" ng-change="saveExpenseType($index)" ng-model="expense.typeOfMoney">
+                                <option>Choose a type here</option>
+                                <option>Accounting Expenses</option>
+                                <option>Advertising</option>
+                                <option>Cost Of Goods</option>
+                                <option>Insurance</option>
+                                <option>Miscellaneous Expenses</option>
+                                <option>Office Expenses</option>
+                                <option>Office Rent</option>
+                                <option>Salaries</option>
+                                <option>Supplies</option>
+                                <option>Travel And Vehicle Expenses</option>
+                                <option>Utilities</option>
+                                <option>Other Expense</option>
+                            </select>
+                            <input type="text" class="inputlg" id="expenseTypeOfMoney" style="width:30%" ng-show="otherExpenseInputDialog" ng-model="expense.typeOfMoney"
+                                ng-blur="saveExpenseType($index)" placeholder="">
+                            <!--<button id="expenseTypeOfMoneySave" class="btn btn-default" ng-show="otherExpenseInputDialog" ng-click="saveExpenseType($index)">Save</button>-->
+                        </h4>
+                    </div>
+                    <div ng-show="displayExpenseDialog">
+                        <h4 class="text-left my-30">
+                            <strong>Type of Expense #{{$index+1}} is: <a href=""><span class="text-info" ng-click="updateExpenseType()">{{expense.typeOfMoney}}</span></a></strong>
+                        </h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Enter the amount of the expense</label>
+                        <input type="number" min="0" max="100000000" class="form-control currency" id="expenseAmount" style="width:30%" ng-model="expense.amount"
+                            placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Is this a monthly amount or a one-time payment?</label>
+                        <br />
+                        <input type="radio" ng-model="expense.type" value="monthly" checked>Monthly
+                        <br />
+                        <input type="radio" ng-model="expense.type" value="once">One-time only
+                        <br />
+                    </div>
+                    <div>
+                        <button ng-click="addExpense()" class="btn btn-primary">Add</button>
+                        <button ng-click="deleteExpense($index)" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                <div class="runawaySubmit">
+                    <button type="submit" ng-click="saveRunway()" class="btn btn-primary">Submit</button>
+                    <button ng-click="cancel()" class="btn btn-primary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('input.currency').currencyInput();
+    });
+
+</script>

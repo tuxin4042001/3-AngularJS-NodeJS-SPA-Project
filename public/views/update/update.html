@@ -1,0 +1,232 @@
+<div class="container">
+    <div class="row">
+        <div ng-contoller="UpdateCtrl">
+            <!-- form is self-validating (using "required" keyword)
+            <div ng-show="hasError" class="alert alert-danger"><span class="center">{{errmsg}}</span><span class="pull-right" ng-click="hasError = false;">&times;</span></div>
+            -->
+            <!-- Not using Stripe at the moment
+            <form stripe-form="stripeCallback">
+            -->
+            <form name='userinfo'>
+                <div class="form-group">
+                    <label for="accelerator">If you are currently enrolled in an accelerator/incubator, which one is it? (Type N/A if not applicable)</label>
+                    <input type="input" class="form-control" ng-model="user.accelerator" name="accelerator" id="accelerator" placeholder="Accelerator/Incubator"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <select class="form-control" ng-model="user.industry" name="industry" id="industry" required>
+                            <option value="Accounting and Tax Preparation">Accounting and Tax Preparation</option>
+                            <option value="Adult Entertainment">Adult Entertainment</option>
+                            <option value="Advertising, Marketing and PR">Advertising, Marketing and PR</option>
+                            <option value="Advocacy Organizations">Advocacy Organizations</option>
+                            <option value="Aerospace and Defense">Aerospace and Defense</option>
+                            <option value="Agriculture & Mining Other">Agriculture & Mining Other</option>A
+                            <option value="Agriculture and Mining">Agriculture and Mining</option>
+                            <option value="Air Couriers and Caro Services">Air Couriers and Caro Services</option>
+                            <option value="Airport, Harbor, and Terminal Operations">Airport, Harbor, and Terminal Operations</option>
+                            <option value="Alcoholic Beverages">Alcoholic Beverages</option>
+                            <option value="Alternative Energy Sources">Alternative Energy Sources</option>
+                            <option value="Amusement Parks and Attractions">Amusement Parks and Attractions</option>
+                            <option value="Apparel Wholesalers">Apparel Wholesalers</option>
+                            <option value="Architecture, Engineering and Design">Architecture, Engineering and Design</option>
+                            <option value="Audio, Video and Photography">Audio, Video and Photography</option>
+                            <option value="Automobile Dealers">Automobile Dealers</option>
+                            <option value="Automobile Parts Wholesalers">Automobile Parts Wholesalers</option>
+                            <option value="Automobile Parts and Supplies">Automobile Parts and Supplies</option>
+                            <option value="Automobiles, Boats and Motor Vehicles">Automobiles, Boats and Motor Vehicles</option>
+                            <option value="Automotive Repair and Maintenance">Automotive Repair and Maintenance</option>
+                            <option value="Banks">Banks</option>
+                            <option value="Beer, Wine and Liquor Wholesalers">Beer, Wine and Liquor Wholesalers</option>
+                            <option value="Beer, Wine and Liquor Stores">Beer, Wine and Liquor Stores</option>
+                            <option value="Biotechnology">Biotechnology</option>
+                            <option value="Business Services Other">Business Services Other</option>
+                            <option value="Business Services">Business Services</option>
+                            <option value="Cable and Television Providers">Cable and Television Providers</option>
+                            <option value="Charitable Organizations and Foundations">Charitable Organizations and Foundations</option>
+                            <option value="Chemicals and Petrochemicals">Chemicals and Petrochemicals</option>
+                            <option value="Chemicals and Plastics Wholesalers">Chemicals and Plastics Wholesalers</option>
+                            <option value="Clothing and Shoe Stores">Clothing and Shoe Stores</option>
+                            <option value="Colleges and Universities">Colleges and Universities</option>
+                            <option value="Computer and Electronics">Computer and Electronics</option>
+                            <option value="Computer and Electronics Other">Computer and Electronics Other</option>
+                            <option value="Computers, Parts and Repair">Computers, Parts and Repair</option>
+                            <option value="Concrete, Glass and Building Materials">Concrete, Glass and Building Materials</option>
+                            <option value="Construction Equipment and Supplies">Construction Equipment and Supplies</option>
+                            <option value="Construction and Remodeling">Construction and Remodeling</option>
+                            <option value="Consumer Electronics, Parts and Repair">Consumer Electronics, Parts and Repair</option>
+                            <option value="Consumer Services Other">Consumer Services Other</option>
+                            <option value="Consumer Services">Consumer Services</option>
+                            <option value="Credit Cards and Related Services">Credit Cards and Related Services</option>
+                            <option value="Credit Unions">Credit Unions</option>
+                            <option value="Cruise Ship Operations">Cruise Ship Operations</option>
+                            <option value="Data Analytics, Management, and Internet">Data Analytics, Management, and Internet</option>
+                            <option value="Data and Records Management">Data and Records Management</option>
+                            <option value="Department Stores">Department Stores</option>
+                            <option value="Diagnostic Laboratories">Diagnostic Laboratories</option>
+                            <option value="Doctors and Health Care Practitioners">Doctors and Health Care Practitioners</option>
+                            <option value="E-Commerce and Internet Business">E-Commerce and Internet Business</option>
+                            <option value="Education Other">Education Other</option>
+                            <option value="Education">Education</option>
+                            <option value="Elementary and Secondary Schools">Elementary and Secondary Schools</option>
+                            <option value="Energy and Utilities Other">Energy and Utilities Other</option>
+                            <option value="Energy and Utilities">Energy and Utilities</option>
+                            <option value="Facilities Management and Maintenance">Facilities Management and Maintenance</option>
+                            <option value="Farming and Mining Machinery and Equipment">Farming and Mining Machinery and Equipment</option>
+                            <option value="Farming and Ranching">Farming and Ranching</option>
+                            <option value="Financial Services Other">Financial Services Other</option>
+                            <option value="Financial Services">Financial Services</option>
+                            <option value="Fishing, Hunting and Forestry and Logging">Fishing, Hunting and Forestry and Logging</option>
+                            <option value="Florist">Florist</option>
+                            <option value="Food and Dairy Product Manufacturing and Packaging">Food and Dairy Product Manufacturing and Packaging</option>
+                            <option value="Freight Hauling (Rail and Truck)">Freight Hauling (Rail and Truck)</option>
+                            <option value="Funeral Homes and Services">Funeral Homes and Services</option>
+                            <option value="Furniture Manufacturing">Furniture Manufacturing</option>
+                            <option value="Furniture Stores">Furniture Stores</option>
+                            <option value="Gambling and Gaming Lodging">Gambling and Gaming Lodging</option>
+                            <option value="Games and Gaming">Games and Gaming</option>
+                            <option value="Gas and Electric Utilities">Gas and Electric Utilities</option>
+                            <option value="Gasoline Stations">Gasoline Stations</option>
+                            <option value="Gasoline and Oil Refineries">Gasoline and Oil Refineries</option>
+                            <option value="Government Other">Government Other</option>
+                            <option value="Government">Government</option>
+                            <option value="Grocery and Food Wholesalers">Grocery and Food Wholesalers</option>
+                            <option value="Grocery and Specialty Stores">Grocery and Specialty Stores</option>
+                            <option value="HR and Recruiting Services">HR and Recruiting Services</option>
+                            <option value="Hardware and Building Material Dealers">Hardware and Building Material Dealers</option>
+                            <option value="Health, Pharmaceuticals, and Biotech">Health, Pharmaceuticals, and Biotech</option>
+                            <option value="Health, Pharmaceuticals, and Biotech Other">Health, Pharmaceuticals, and Biotech Other</option>
+                            <option value="Hospitals">Hospitals</option>
+                            <option value="IT and Network Services and Support">IT and Network Services and Support</option>
+                            <option value="Instruments and Controls">Instruments and Controls</option>
+                            <option value="Insurance and Risk Management">Insurance and Risk Management</option>
+                            <option value="International Bodies and Organizations">International Bodies and Organizations</option>
+                            <option value="Investment Banking and Venture Capital">Investment Banking and Venture Capital</option>
+                            <option value="Jewelry, Luggage, and Leather Goods">Jewelry, Luggage, and Leather Goods</option>
+                            <option value="Laundry and Dry Cleaning">Laundry and Dry Cleaning</option>
+                            <option value="Legal Services">Legal Services</option>
+                            <option value="Lending and Mortgage">Lending and Mortgage</option>
+                            <option value="Libraries, Archives and Museums">Libraries, Archives and Museums</option>
+                            <option value="Local Government">Local Government</option>
+                            <option value="Lumber and Construction Materials Wholesalers">Lumber and Construction Materials Wholesalers</option>
+                            <option value="Management Consulting">Management Consulting</option>
+                            <option value="Manufacturing Other">Manufacturing Other</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Marine and Inland Shipping">Marine and Inland Shipping</option>
+                            <option value="Media and Entertainment Other">Media and Entertainment Other</option>
+                            <option value="Media and Entertainment">Media and Entertainment</option>
+                            <option value="Medical Devices">Medical Devices</option>
+                            <option value="Medical Supplies and Equipment">Medical Supplies and Equipment</option>
+                            <option value="Metal and Mineral Wholesalers">Metal and Mineral Wholesalers</option>
+                            <option value="Metals Manufacturing">Metals Manufacturing</option>
+                            <option value="Mining and Quarrying">Mining and Quarrying</option>
+                            <option value="Motion Picture Exhibitors">Motion Picture Exhibitors</option>
+                            <option value="Motion Picture and Recording Producers">Motion Picture and Recording Producers</option>
+                            <option value="Moving Companies and Services">Moving Companies and Services</option>
+                            <option value="National Government">National Government</option>
+                            <option value="Network Security Products">Network Security Products</option>
+                            <option value="Networking equipment and Systems">Networking equipment and Systems</option>
+                            <option value="Newspapers, Books, and Periodicals">Newspapers, Books, and Periodicals</option>
+                            <option value="Non-profit Other">Non-profit Other</option>
+                            <option value="Non-profit">Non-profit</option>
+                            <option value="Nonalcoholic Beverages">Nonalcoholic Beverages</option>
+                            <option value="Office Equipment and Suppliers Wholesalers">Office Equipment and Suppliers Wholesalers</option>
+                            <option value="Office Machinery and Equipment">Office Machinery and Equipment</option>
+                            <option value="Office Supplies Stores">Office Supplies Stores</option>
+                            <option value="Outpatient Care Centers">Outpatient Care Centers</option>
+                            <option value="Paper and Paper Products">Paper and Paper Products</option>
+                            <option value="Parking Lots and Garage Management">Parking Lots and Garage Management</option>
+                            <option value="Participatory Sports and Recreation">Participatory Sports and Recreation</option>
+                            <option value="Passenger Airlines">Passenger Airlines</option>
+                            <option value="Payroll Services">Payroll Services</option>
+                            <option value="Performing Arts">Performing Arts</option>
+                            <option value="Peripherals Manufacturing">Peripherals Manufacturing</option>
+                            <option value="Personal Care">Personal Care</option>
+                            <option value="Personal Financial Planning and Private Banking">Personal Financial Planning and Private Banking</option>
+                            <option value="Personal Health Care Products">Personal Health Care Products</option>
+                            <option value="Petroleum Products Wholesalers">Petroleum Products Wholesalers</option>
+                            <option value="Pharmaceuticals">Pharmaceuticals</option>
+                            <option value="Photofinishing Services">Photofinishing Services</option>
+                            <option value="Plastics and Rubber Manufacturing">Plastics and Rubber Manufacturing</option>
+                            <option value="Postal, Express Delivery and Couriers">Postal, Express Delivery and Couriers</option>
+                            <option value="Professional Associations">Professional Associations</option>
+                            <option value="Property Leasing and Management">Property Leasing and Management</option>
+                            <option value="Radio, Television Broadcasting">Radio, Television Broadcasting</option>
+                            <option value="Real Estate Agents and Appraisers">Real Estate Agents and Appraisers</option>
+                            <option value="Real Estate Investment and Development">Real Estate Investment and Development</option>
+                            <option value="Real Estate and Construction Other">Real Estate and Construction Other</option>
+                            <option value="Real Estate and Construction">Real Estate and Construction</option>
+                            <option value="Religious Organizations">Religious Organizations</option>
+                            <option value="Rental Cars">Rental Cars</option>
+                            <option value="Residential and Long-term Care Facilities">Residential and Long-term Care Facilities</option>
+                            <option value="Resorts and Casinos">Resorts and Casinos</option>
+                            <option value="Restaurants and Bars">Restaurants and Bars</option>
+                            <option value="Retail Others">Retail Others</option>
+                            <option value="Retail">Retail</option>
+                            <option value="SaaS">SaaS</option>
+                            <option value="Sales Services">Sales Services</option>
+                            <option value="Securities Agents and Brokers">Securities Agents and Brokers</option>
+                            <option value="Security Services">Security Services</option>
+                            <option value="Semiconductor and Microchip Manufacturing">Semiconductor and Microchip Manufacturing</option>
+                            <option value="Sewage Treatment Facilities">Sewage Treatment Facilities</option>
+                            <option value="Social and Membership Organizations">Social and Membership Organizations</option>
+                            <option value="Software">Software</option>
+                            <option value="Software, Artificial Intelligence and Virtual Reality">Software, Artificial Intelligence and Virtual Reality</option>
+                            <option value="Spectator Sports and Teams">Spectator Sports and Teams</option>
+                            <option value="Sporting Goods, Hobby, Books and Music Stores">Sporting Goods, Hobby, Books and Music Stores</option>
+                            <option value="Sports, Arts, and Recreation Instruction">Sports, Arts, and Recreation Instruction</option>
+                            <option value="State/Provincial Government">State/Provincial Government</option>
+                            <option value="Taxi, Buses and Transit Systems">Taxi, Buses and Transit Systems</option>
+                            <option value="Technical and Trade Schools">Technical and Trade Schools</option>
+                            <option value="Telecommunications Equipment and Accessories">Telecommunications Equipment and Accessories</option>
+                            <option value="Telecommunications Other">Telecommunications Other</option>
+                            <option value="Telecommunications">Telecommunications</option>
+                            <option value="Telephone Service Providers and Carriers">Telephone Service Providers and Carriers</option>
+                            <option value="Test Preparation">Test Preparation</option>
+                            <option value="Textiles, Apparel and Accessories">Textiles, Apparel and Accessories</option>
+                            <option value="Tools, Hardware and Light Machinery">Tools, Hardware and Light Machinery</option>
+                            <option value="Trade Groups and Labor Unions">Trade Groups and Labor Unions</option>
+                            <option value="Transportation and Storage">Transportation and Storage</option>
+                            <option value="Transportation and Storage Other">Transportation and Storage Other</option>
+                            <option value="Travel Agents and Services">Travel Agents and Services</option>
+                            <option value="Travel Recreation and Leisure">Travel Recreation and Leisure</option>
+                            <option value="Travel, Recreations and Leisure Other">Travel, Recreations and Leisure Other</option>
+                            <option value="Trust, Fiduciary, and Custody Activities">Trust, Fiduciary, and Custody Activities</option>
+                            <option value="Veterinary Clinics and Services">Veterinary Clinics and Services</option>
+                            <option value="Video and Teleconferencing">Video and Teleconferencing</option>
+                            <option value="Warehousing and Storage">Warehousing and Storage</option>
+                            <option value="Waste Management and Recycling">Waste Management and Recycling</option>
+                            <option value="Water Treatment and Utilities">Water Treatment and Utilities</option>
+                            <option value="Wholesale and Distribution">Wholesale and Distribution</option>
+                            <option value="Wholesale and Distribution Other">Wholesale and Distribution Other</option>
+                            <option value="Wireless and Mobile">Wireless and Mobile</option>
+                            <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!--
+                <div class="form-group">
+                    <label for="subscription">Which Subscription are you registering for?</label>
+                    <input type="input" class="form-control" ng-model="user.subscription" id="subscription" disabled value="Startup Subscription">
+                </div>
+                -->
+
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="agreeStatement" name="agreeStatement" id="agreeStatement" ng-init="agreeStatement=true" required> I agree to the <a href="#/termsofuse" target="_blank">Terms of Use</a> and <a href="#/privacypolicy" target="_blank">Privacy Statement</a>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="user.agreeEmails" id="agreeEmails"> Yes! Send me presonalized emails such as freebies, promotions, and communications from VenturX and the Startup community.
+                    </label>
+                </div>
+                <button type="submit" ng-click="updateUser()" class="btn btn-primary" ng-disabled="userinfo.accelerator.$empty || userinfo.agreeStatement.$invalid">Submit</button>
+                <!--
+                <button type="submit" ng-click="" class="btn btn-default">Previous</button>
+                -->
+            </form>
+        </div>
+    </div>
+</div>

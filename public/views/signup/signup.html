@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="row">
+		<div ng-contoller="SignupCtrl" class="col-xs-12 col-md-10">
+			<div ng-show="hasError" class="alert alert-danger"><span class="center">Error: {{error}}</span><span class="pull-right" ng-click="hasError = false;">&times;</span></div>
+			<form>
+				<div class="form-group">
+					<label for="FirstName">First Name</label>
+					<input type="input" class="form-control" ng-model="newUser.firstName" id="FirstName" placeholder="First Name">
+				</div>
+				<div class="form-group">
+					<label for="LastName">Last Name</label>
+					<input type="input" class="form-control" ng-model="newUser.lastName" id="LastName" placeholder="Last Name">
+				</div>
+				<div class="form-group">
+					<label for="Email">Email</label>
+					<input type="email" class="form-control" ng-model="newUser.email" id="Email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="Password">Password</label>
+					<input type="password" class="form-control" ng-model="newUser.password" id="Password" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">Confirm Password</label>
+					<input type="password" class="form-control" ng-model="rePassword" id="RePassword" placeholder="Confirm Password">
+				</div>
+				<button type="submit" class="btn btn-primary" ng-click="register()" id="submit">Next</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	$("#submit").click(function () {
+		var email = $("#Email").val();
+		var firstname = $("#FirstName").val();
+		var lastname = $("#LastName").val();
+		heap.identify(email);
+		heap.addUserProperties({
+			'Email': email,
+			'First Name': firstname, 
+			'Last Name': lastname
+		});
+	})
+</script>
